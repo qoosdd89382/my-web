@@ -285,8 +285,7 @@ form.contact-form {
 }
 
 #content > .container > div {
-  /* 选择父元素为 content下的 class元素中的所有 <div> 元素。 
-  by W3C */
+  /* 选择父元素为 content下的 class元素中的所有 <div> 元素。 by W3C */
   padding: 78px 0;
 }
 
