@@ -1,0 +1,303 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#nav {
+  background-color: #35ceed;
+  width: 100%;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 100;
+  /* 希望 #nav 永遠顯示在最上方，要高於其他的元素，因此我們要幫他定義一個大於 0 的數字 */
+
+  width: 100%;
+  /* or
+  right: 0;
+  使之溢出達到居中目的
+  */ 
+}
+
+
+#about, #my-work, #contact-me {
+}
+
+.menu li {
+  width: 150px;
+  padding: 10px 0px;
+
+  border: 1px solid #fff;
+  border-radius: 8px;
+
+  list-style-type: none;
+  text-align: center;
+  background-color: #009fd3;
+  color: #fff;
+  
+  display: inline-block;
+  /**
+    如果我們之前在「操作盒子的屬性」裡提過的，Inline 元素的 width 值會被內容本身的大小控制；
+    然而，inline-block 會讓排列方向改成水平，但盒子的 margin 與 padding 等屬性還是保留 block 的特色。
+  **/
+}
+
+a {
+  display: block;
+  /**
+    需要注意的是，你需要把 a 元素的 display 屬性改為 block，
+    超連結的有效範圍才能擴張到和 li 同樣的尺寸。
+  **/
+  color: #fff;
+  text-decoration: none;
+}
+
+li:hover  {
+  border: 1px solid #009fd3;
+  background-color: #fff;
+}
+
+li:hover a {
+  color: #009fd3;
+  font-weight: 800;
+}
+
+.menu {
+  float: right;
+}
+
+h1 {
+  text-align: center;
+}
+
+#about h1 {
+  margin-bottom: 0;
+  text-align: left;
+}
+
+
+
+#my-avatar {
+  float: left;
+  margin-right: 20px;
+}
+
+#my-avatar img {
+  width: 200px;
+}
+
+
+h3 {
+  margin: 0;
+}
+
+table {
+  font-size: 14px;
+  text-align: left;
+}
+
+th, td {
+  vertical-align: top;
+}
+
+
+td {
+  color: #666;
+  padding-left:10px;
+}
+
+hr {
+  border: 0.5px solid #eee;
+}
+
+#my-work-gallery {
+    text-align: center;
+}
+
+
+/**
+這個階段的實作，要特別注意的是 .item 和 .item img 的關係，
+由於 .item 才是整個「作品集內容」的容器，而 img 和 .item-info 是內容，
+所以我們會將真正的尺寸定義在 .item 上，而在容易裡的圖片和文字則使用相對的尺寸。
+**/
+.item {
+  position: relative;
+  /**
+  讓他根據視窗的寬度來決定尺寸；
+  而在 .item 這個容器裡的內容都設為 100%，也就是說不會超過 .item。
+  **/
+  max-width: 30%;
+  display: inline-block;
+  margin-bottom: 10px;
+  border: 1px solid #eee;
+  padding-top: 3px;
+}
+
+
+
+
+.item img {
+  width: 100%;
+}
+
+.item-info {
+  width: 100%;
+  height: 100%;
+
+  text-align: center;
+  padding: 90px 10px;
+
+  border: 1px solid #a1edfc;                    /* 標示用，排版完記得拿掉 */
+  background-color: rgba(161,237,252,.8);   /* 背景半透明 */
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: none;
+}
+
+.item:hover .item-info {
+  display: block;
+}
+
+/**
+作法一：利用 opacity 切換
+第一種作法，我們將 .item-info 設為透明，因為元素還在網頁上，只是眼睛看不到，
+等觸發 :hover 事件時，再將透明度成看得到。
+請加入以下 CSS 設定：
+
+--
+.item-info {
+  ...
+  opacity: 0;
+}
+
+.item-info:hover {
+  opacity: 1;
+}
+--
+display跟opacity會影響動作觸發的元素
+今天如果底下的圖片要做超連結
+使用opacity的設定做顯示切換，使用者就會點不到
+因為你的info不管如何都會擋在圖片上面。
+
+
+作法二：利用 display 切換
+
+第二種作法，我們是將 display 的方式設為 none，等觸發 :hover 事件時，再將切為 block。
+請加入以下 CSS 設定：
+
+--
+.item-info {
+  ...
+  display: none;
+}
+
+.item:hover .item-info {
+  display: block;
+}
+--
+
+請注意在 display 的作法裡，選擇器的設定不太一樣。
+那是因為一旦 .item-info 沒有被 display 出來，你就永遠無法觸發「游標移過此元素」，
+因此，我們會把 :hover 綁定在父層的 .item，再透過繼承選擇器來更動 .item-info 的屬性。
+**/
+
+#contact-me {
+}
+
+form.contact-form {
+  /**
+  在這裡使用 form.contact-form 或 直接輸入 .contact-form 會有不同之處嗎？
+  有沒有前面的form測試下來是真的沒有差...
+  除非有另外一個class選擇器也叫做contact-form，才要特別指定是form.contact-form吧
+  但是依照作用把名稱取得這麼明白，應該不會有這種狀況啦...
+  **/
+  width: 50%;
+  margin: 0 auto;
+}
+
+.form-row {
+  margin-bottom: 15px;
+}
+
+.form-row input, .form-row textarea {
+  border-radius: 3px;
+  width:100%;
+  border: 1px solid #D6D9DC;
+  padding:7px;
+}
+
+.form-row textarea {
+  resize: none;
+  height: 4em;
+  /**
+  <textarea> 預設是使用者可以拖曳元素的右下角來改變大小，
+  但我們使用 resize:none 把這個功能關掉，並將輸入框的高度設為 4 行字。
+  我們總是使用 .form-row 來限制 CSS 樣式的有效範圍（繼承selector），
+  以便不小心修改到不在表單裡的 html 元素。
+  **/
+}
+
+.form-row button {
+  border: none;
+  border-radius: 3px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.form-row button[type="sumbit"] {
+  background-color: #009fd3;
+  color: #FFFFFF;
+}
+
+.form-row button:hover {
+  background-color: #4bddfb;
+}
+
+.form-row button:active {
+  background-color: #00a3d4;
+}
+
+.sumbit-button-center .form-row {
+  width:109px;
+  margin: 0 auto;
+}
+
+
+
+.container {
+  width: 800px;
+  margin: 0 auto;
+}
+
+#content {
+  position: relative;
+  top: 68px;
+  padding: 15px;
+}
+
+#content > .container > div {
+  /* 选择父元素为 content下的 class元素中的所有 <div> 元素。 
+  by W3C */
+  padding: 78px 0;
+}
+
+hr.bar {
+  border: 2px solid #4bddfb;
+  width: 80px;
+}
+
+
+
+h3 {
+  display: inline-block;
+  padding-left: 2px;
+}
