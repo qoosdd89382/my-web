@@ -117,7 +117,7 @@ hr {
 }
 
 #my-work-gallery {
-    text-align: center;
+  text-align: center;
 }
 
 
@@ -295,8 +295,136 @@ hr.bar {
 }
 
 
-
 h3 {
   display: inline-block;
   padding-left: 2px;
 }
+
+/*
+  原始 css code
+*/
+
+
+
+
+@media screen and (min-width: 1024px) {
+  .menu-button {
+    display: none;
+  }
+  .menu-button-checkbox {
+    display: none;
+  }
+}
+
+
+@media screen and (max-width: 1023px) {
+
+  .container {
+    width: auto;
+  }
+
+  .menu-button {
+    float: right;
+    font-size:25px;
+    line-height: 40px;
+    color: white;
+    background: transparent;
+    padding: 0 15px;
+    border: 0;
+  }
+
+  .menu-button-checkbox {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 55px;
+    height: 40px;
+    opacity: 0;
+  }
+
+  .menu-button-checkbox:checked ~ .menu {
+    /*
+    當 .menu-button-checkbox 狀態為 checked 時，選擇在同階層後面的 .menu 元素
+    :checked 是一種假類別 (pseudo-classes)，和之前提過的 :hover 一樣，
+    代表某種特別的狀態，想知道更多的話，可以參考
+    https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes 
+    波浪號 (~) 是一種同層全體選擇器 (general sibling combinator)，
+    只要位在同一個層階，
+    前方元素 (.menu-button-checkbox) 後方所有的目標物 (.menu) 都會被選中，
+    詳細介紹可以參考
+    https://developer.mozilla.org/en-US/docs/Web/CSS/General_sibling_selectors
+    */
+    display: block;
+  }
+
+  .menu {
+    display: none;
+    margin-top: 0;
+    padding-left: 0;
+    position: fixed;
+    right: 0;
+    top: 40px;
+    width: 150px;
+    height: 100%;
+    background: #009fd3;
+  }
+
+  .menu li {
+    border: 0;
+    border-radius: 0;
+  }
+
+  #my-avatar {
+    width: 100%;
+  }
+
+  #my-avatar img {
+    display: block;
+    margin: 15px auto;
+  }
+
+  .item {
+    max-width: 100%;
+  }
+
+  form.contact-form {
+    width: 80%;
+  }
+
+  
+  #content > .container > div {
+    /* 选择父元素为 content下的 class元素中的所有 <div> 元素。 by W3C */
+    padding: 40px 0;
+  }
+
+  #content .container #about {
+    padding-top: 20px;
+  }
+
+
+  #content {
+    position: relative;
+    top: 40px;
+    padding: 15px;
+  }
+
+  #my-info h1, #my-info h3 {
+    display: block;
+    text-align: center;
+  } 
+
+  #my-info table {
+    margin: 0 auto;
+  }
+
+  #my-info th {
+    text-align: right;
+  }
+
+
+  /*
+    手機版的 css 都寫在這邊
+  */   
+
+}
+
