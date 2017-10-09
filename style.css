@@ -26,9 +26,6 @@ html, body {
 }
 
 
-#about, #my-work, #contact-me {
-}
-
 .menu li {
   width: 150px;
   padding: 10px 0px;
@@ -151,7 +148,7 @@ hr {
   height: 100%;
 
   text-align: center;
-  padding: 90px 10px;
+  padding: 45% 10px;
 
   border: 1px solid #a1edfc;                    /* 標示用，排版完記得拿掉 */
   background-color: rgba(161,237,252,.8);   /* 背景半透明 */
@@ -209,9 +206,6 @@ display跟opacity會影響動作觸發的元素
 那是因為一旦 .item-info 沒有被 display 出來，你就永遠無法觸發「游標移過此元素」，
 因此，我們會把 :hover 綁定在父層的 .item，再透過繼承選擇器來更動 .item-info 的屬性。
 **/
-
-#contact-me {
-}
 
 form.contact-form {
   /**
